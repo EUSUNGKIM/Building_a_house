@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameStart.cs" />
+    <Compile Include="Itemlsit.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="Gamedata.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

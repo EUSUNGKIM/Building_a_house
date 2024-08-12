@@ -12,8 +12,16 @@ namespace Building_a_house
         static void Main(string[] args)
         {
 
-            Map map = new Map();
-            Map.PrintMap();
+            Gamedata gamedata = new Gamedata();
+            gamedata.Start();
+
+            while (gamedata.run)
+            {
+                gamedata.Render();
+                gamedata.Input();
+                gamedata.Update();
+            }
+            gamedata.End();
         }
     }
 }
