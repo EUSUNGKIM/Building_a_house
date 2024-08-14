@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buffer.cs" />
     <Compile Include="ItemList.cs" />
     <Compile Include="Motion.cs" />
     <Compile Include="Ston.cs" />

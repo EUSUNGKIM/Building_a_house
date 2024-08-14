@@ -38,7 +38,7 @@ namespace Building_a_house
             for (int i = 0; i < items.Count; i++)
             {
                 Console.SetCursorPosition(10, 20);
-                Console.Write($"{items[i].Name}{i + 1}개 ");
+                Console.Write($"{items[i].Name} {i + 1}개 ");
             }
             if (IsFull())
             {

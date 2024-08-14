@@ -39,7 +39,7 @@ namespace Building_a_house
         }
         public void Render()
         {
-            Console.Clear();
+            
             map.PrintMap();
             player.Render();
             inventory.Render();
