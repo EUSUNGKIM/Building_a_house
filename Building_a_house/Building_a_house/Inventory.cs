@@ -23,7 +23,14 @@ namespace Building_a_house
                 items.Add(item);
             }
         }
-
+        public void RemoveItem(string itemName)
+        {
+            var item = items.FirstOrDefault(i => i.Name == itemName);
+            if (item != null)
+            {
+                items.Remove(item);
+            }
+        }
         public void Render()
         {
             Console.SetCursorPosition(0, 20);

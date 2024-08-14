@@ -11,12 +11,14 @@ namespace Building_a_house
     {
         public Point Position;
         public bool IsCollected;
+        public bool IsInstalled;
         private static Random random = new Random();
 
         public Stone(int y, int x)
         {
             Position = new Point(y, x);
             IsCollected = false;
+            IsInstalled = false;
         }
         public static List<Stone> RandomStone(bool[,] mapTile, int stoneCount)
         {
@@ -27,7 +29,7 @@ namespace Building_a_house
             {
                 for (int j = 0; j < mapTile.GetLength(1); j++)
                 {
-                    if (mapTile[i, j]) // 
+                    if (mapTile[i, j])
                     {
                         empty.Add(new Point(i, j));
                     }
@@ -53,12 +55,31 @@ namespace Building_a_house
         {
             IsCollected = true;
         }
+        public void Install()
+        {
+            IsInstalled = true;
+        }
 
         public void PrintStone()
         {
             Console.SetCursorPosition(Position.X * 2, Position.Y);
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("▲");
+
+            if (IsInstalled)
+            {
+                Console.ForegroundColor = ConsoleColor.Green; // 설치된 돌의 색상
+                Console.Write("■");
+            }
+            else if (IsCollected)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray; // 수집된 돌의 색상
+                Console.Write("▲");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan; // 일반 돌의 색상
+                Console.Write("▲");
+            }
+
             Console.ResetColor();
         }
     }

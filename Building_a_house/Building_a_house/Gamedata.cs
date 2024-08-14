@@ -18,8 +18,8 @@ namespace Building_a_house
 
         public Gamedata()
         {
-            map = new Map(inventory);
             inventory = new Inventory();
+            map = new Map(inventory);
             player = new Player(map);
             motion = new Motion(player, map, inventory);
             run = true; // 루프

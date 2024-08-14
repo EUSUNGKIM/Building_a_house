@@ -12,7 +12,8 @@ namespace Building_a_house
     {
         public bool[,] MapTile;
         private List<Stone> stones;
-        
+        private Inventory inventory;
+
         public Map(Inventory _inventory)
         {
             MapTile = new bool[,]
@@ -63,12 +64,19 @@ namespace Building_a_house
                 stone.PrintStone();
             }
         }
-        public Stone GetStoneAt(int y, int x)
+        public Stone GetStone(int y, int x)
         {
             return stones.FirstOrDefault(s => s.Position.Y == y && s.Position.X == x);
         }
-
-        public void RandomStoneGeneration(Inventory _inventory)
+        public void RemoveStone(int y, int x)
+        {
+            Stone stone = stones.FirstOrDefault(s => s.Position.Y == y && s.Position.X == x);
+            if (stone != null)
+            {
+                stones.Remove(stone);
+            }
+        }
+        public void RandomStones(Inventory _inventory)
         {
             
             if (!_inventory.IsFull())
@@ -91,6 +99,14 @@ namespace Building_a_house
                     var randomPosition = duplication[new Random().Next(duplication.Count)];
                     stones.Add(new Stone(randomPosition.Y, randomPosition.X));
                 }
+            }
+        }
+
+        public void PlaceStone(int y, int x, Stone stone)
+        {
+            if (MapTile[y, x])
+            {
+                stones.Add(stone);
             }
         }
     }

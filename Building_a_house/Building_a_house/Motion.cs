@@ -13,6 +13,8 @@ namespace Building_a_house
         private Map map;
         private Inventory inventory;
 
+
+
         public Motion(Player _player, Map _map, Inventory _inventory)
         {
             player = _player;
@@ -28,18 +30,38 @@ namespace Building_a_house
             {
                 CollectStone();
             }
+            else if (key == ConsoleKey.D1)
+            {
+                InstallStone();
+            }
         }
 
         private void CollectStone()
         {
-            Stone stone = map.GetStoneAt(player.position.Y, player.position.X);
+            Stone stone = map.GetStone(player.position.Y, player.position.X);
             if (stone != null && !stone.IsCollected)
             {
                 if (!inventory.IsFull())
                 {
                     stone.Collect();
-                    inventory.AddItem(new Itemlist("돌")); // 인벤토리에 돌 추가
-                    map.RandomStoneGeneration(inventory); // 새로운 돌 생성
+                    inventory.AddItem(new Itemlist("돌"));
+                    map.RemoveStone(player.position.Y, player.position.X);
+                    map.RandomStones(inventory);
+                }
+            }
+        }
+
+        private void InstallStone()
+        {
+            if (inventory.items.Any(item => item.Name == "돌"))
+            {
+                
+                if (map.MapTile[player.position.Y, player.position.X])
+                {
+                    inventory.items.Remove(inventory.items.First(item => item.Name == "돌"));
+                    Stone stone = new Stone(player.position.Y, player.position.X);
+                    stone.Install();
+                    map.PlaceStone(player.position.Y, player.position.X, stone);
                 }
             }
         }
