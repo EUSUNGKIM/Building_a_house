@@ -35,11 +35,11 @@ namespace Building_a_house
             Stone stone = map.GetStoneAt(player.position.Y, player.position.X);
             if (stone != null && !stone.IsCollected)
             {
-                stone.Collect();
                 if (!inventory.IsFull())
                 {
+                    stone.Collect();
                     inventory.AddItem(new Itemlist("돌")); // 인벤토리에 돌 추가
-                    map.RandomStoneGeneration(); // 새로운 돌 생성
+                    map.RandomStoneGeneration(inventory); // 새로운 돌 생성
                 }
             }
         }

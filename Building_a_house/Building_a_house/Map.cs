@@ -12,8 +12,8 @@ namespace Building_a_house
     {
         public bool[,] MapTile;
         private List<Stone> stones;
-
-        public Map()
+        
+        public Map(Inventory _inventory)
         {
             MapTile = new bool[,]
             {
@@ -39,6 +39,7 @@ namespace Building_a_house
                 {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,},
             };
             stones = Stone.RandomStone(MapTile, 5);
+            
         }
         public void PrintMap()
         {
@@ -67,25 +68,29 @@ namespace Building_a_house
             return stones.FirstOrDefault(s => s.Position.Y == y && s.Position.X == x);
         }
 
-        public void RandomStoneGeneration()
+        public void RandomStoneGeneration(Inventory _inventory)
         {
-            var emptySpaces = new List<Point>();
-            for (int i = 0; i < MapTile.GetLength(0); i++)
+            
+            if (!_inventory.IsFull())
             {
-                for (int j = 0; j < MapTile.GetLength(1); j++)
+                var duplication = new List<Point>();
+                for (int i = 0; i < MapTile.GetLength(0); i++)
                 {
-                    
-                    if (MapTile[i, j] && stones.All(s => s.Position.Y != i || s.Position.X != j))
+                    for (int j = 0; j < MapTile.GetLength(1); j++)
                     {
-                        emptySpaces.Add(new Point(i, j));
+
+                        if (MapTile[i, j] && stones.All(s => s.Position.Y != i || s.Position.X != j))
+                        {
+                            duplication.Add(new Point(i, j));
+                        }
                     }
                 }
-            }
 
-            if (emptySpaces.Count > 0)
-            {
-                var randomPosition = emptySpaces[new Random().Next(emptySpaces.Count)];
-                stones.Add(new Stone(randomPosition.Y, randomPosition.X));
+                if (duplication.Count > 0)
+                {
+                    var randomPosition = duplication[new Random().Next(duplication.Count)];
+                    stones.Add(new Stone(randomPosition.Y, randomPosition.X));
+                }
             }
         }
     }

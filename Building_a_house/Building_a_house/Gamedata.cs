@@ -18,7 +18,7 @@ namespace Building_a_house
 
         public Gamedata()
         {
-            map = new Map();
+            map = new Map(inventory);
             inventory = new Inventory();
             player = new Player(map);
             motion = new Motion(player, map, inventory);

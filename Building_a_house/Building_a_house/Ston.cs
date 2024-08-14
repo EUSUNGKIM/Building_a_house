@@ -16,6 +16,7 @@ namespace Building_a_house
         public Stone(int y, int x)
         {
             Position = new Point(y, x);
+            IsCollected = false;
         }
         public static List<Stone> RandomStone(bool[,] mapTile, int stoneCount)
         {

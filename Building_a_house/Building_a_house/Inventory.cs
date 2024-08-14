@@ -10,8 +10,8 @@ namespace Building_a_house
     public class Inventory
     {
         public List<Itemlist> items = new List<Itemlist>();
-        private const int MaxItems = 6;
-        private const int MessageFlashDuration = 500;
+        public const int MaxItems = 6;
+        
         public bool IsFull()
         {
             return items.Count >= MaxItems;

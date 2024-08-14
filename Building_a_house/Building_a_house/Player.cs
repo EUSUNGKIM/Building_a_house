@@ -10,7 +10,6 @@ namespace Building_a_house
     {
         public Point position;
         public Map map;
-        public Inventory inventory;
 
         public Player(Map _map)
         {
