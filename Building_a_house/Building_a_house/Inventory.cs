@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Building_a_house
@@ -9,17 +10,17 @@ namespace Building_a_house
     public class Inventory
     {
         public List<Itemlist> items = new List<Itemlist>();
-
+        private const int MaxItems = 6;
+        private const int MessageFlashDuration = 500;
+        public bool IsFull()
+        {
+            return items.Count >= MaxItems;
+        }
         public void AddItem(Itemlist item)
         {
-            if (items.Count < 6)
+            if (!IsFull())
             {
                 items.Add(item);
-            }
-            else
-            {
-                Console.WriteLine("인벤토리가 가득찼습니다.");
-                
             }
         }
 
@@ -31,6 +32,14 @@ namespace Building_a_house
             {
                 Console.SetCursorPosition(10, 20);
                 Console.Write($"{items[i].Name}{i + 1}개 ");
+            }
+            if (IsFull())
+            {
+                Console.SetCursorPosition(0, 22);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("인벤토리가 가득 찼습니다.");
+                Console.ResetColor();
             }
         }
     }

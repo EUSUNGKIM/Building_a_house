@@ -20,7 +20,7 @@ namespace Building_a_house
         public static List<Stone> RandomStone(bool[,] mapTile, int stoneCount)
         {
             List<Stone> stones = new List<Stone>();
-            List<Point> emptySpaces = new List<Point>();
+            List<Point> empty = new List<Point>();
 
             for (int i = 0; i < mapTile.GetLength(0); i++)
             {
@@ -28,21 +28,21 @@ namespace Building_a_house
                 {
                     if (mapTile[i, j]) // 
                     {
-                        emptySpaces.Add(new Point(i, j));
+                        empty.Add(new Point(i, j));
                     }
                 }
             }
 
             for (int i = 0; i < stoneCount; i++)
             {
-                if (emptySpaces.Count == 0)
+                if (empty.Count == 0)
                 {
                     break;
                 }
 
-                int index = random.Next(emptySpaces.Count);
-                Point pos = emptySpaces[index];
-                emptySpaces.RemoveAt(index);
+                int index = random.Next(empty.Count);
+                Point pos = empty[index];
+                empty.RemoveAt(index);
 
                 stones.Add(new Stone(pos.Y, pos.X));
             }
@@ -53,7 +53,7 @@ namespace Building_a_house
             IsCollected = true;
         }
 
-        public void PrintMineral()
+        public void PrintStone()
         {
             Console.SetCursorPosition(Position.X * 2, Position.Y);
             Console.ForegroundColor = ConsoleColor.Cyan;

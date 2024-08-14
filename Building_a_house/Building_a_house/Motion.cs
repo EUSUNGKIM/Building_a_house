@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Building_a_house
@@ -35,8 +36,11 @@ namespace Building_a_house
             if (stone != null && !stone.IsCollected)
             {
                 stone.Collect();
-                inventory.AddItem(new Itemlist("돌")); // 인벤토리에 돌 추가
-                map.GenerateNewStoneAtRandomLocation(); // 새로운 돌 생성
+                if (!inventory.IsFull())
+                {
+                    inventory.AddItem(new Itemlist("돌")); // 인벤토리에 돌 추가
+                    map.RandomStoneGeneration(); // 새로운 돌 생성
+                }
             }
         }
     }

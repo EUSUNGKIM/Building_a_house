@@ -59,7 +59,7 @@ namespace Building_a_house
             }
             foreach (var stone in stones.Where(s => !s.IsCollected))
             {
-                stone.PrintMineral();
+                stone.PrintStone();
             }
         }
         public Stone GetStoneAt(int y, int x)
@@ -67,7 +67,7 @@ namespace Building_a_house
             return stones.FirstOrDefault(s => s.Position.Y == y && s.Position.X == x);
         }
 
-        public void GenerateNewStoneAtRandomLocation()
+        public void RandomStoneGeneration()
         {
             var emptySpaces = new List<Point>();
             for (int i = 0; i < MapTile.GetLength(0); i++)
