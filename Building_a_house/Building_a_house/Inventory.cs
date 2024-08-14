@@ -19,17 +19,18 @@ namespace Building_a_house
             else
             {
                 Console.WriteLine("인벤토리가 가득찼습니다.");
+                
             }
         }
 
         public void Render()
         {
             Console.SetCursorPosition(0, 20);
-            Console.WriteLine("인벤토리 : ");
+            Console.Write("인벤토리 : ");
             for (int i = 0; i < items.Count; i++)
             {
-                Console.SetCursorPosition(20, i + 1);
-                Console.Write($"아이템 {i + 1}: {items[i].Name}");
+                Console.SetCursorPosition(10, 20);
+                Console.Write($"{items[i].Name}{i + 1}개 ");
             }
         }
     }

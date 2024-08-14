@@ -11,6 +11,7 @@ namespace Building_a_house
     public class Map
     {
         public bool[,] MapTile;
+        private List<Stone> stones;
 
         public Map()
         {
@@ -37,6 +38,7 @@ namespace Building_a_house
                 {false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,},
                 {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,},
             };
+            stones = Stone.RandomStone(MapTile, 5);
         }
         public void PrintMap()
         {
@@ -54,6 +56,36 @@ namespace Building_a_house
                     }
                 }
                 Console.WriteLine();
+            }
+            foreach (var stone in stones.Where(s => !s.IsCollected))
+            {
+                stone.PrintMineral();
+            }
+        }
+        public Stone GetStoneAt(int y, int x)
+        {
+            return stones.FirstOrDefault(s => s.Position.Y == y && s.Position.X == x);
+        }
+
+        public void GenerateNewStoneAtRandomLocation()
+        {
+            var emptySpaces = new List<Point>();
+            for (int i = 0; i < MapTile.GetLength(0); i++)
+            {
+                for (int j = 0; j < MapTile.GetLength(1); j++)
+                {
+                    
+                    if (MapTile[i, j] && stones.All(s => s.Position.Y != i || s.Position.X != j))
+                    {
+                        emptySpaces.Add(new Point(i, j));
+                    }
+                }
+            }
+
+            if (emptySpaces.Count > 0)
+            {
+                var randomPosition = emptySpaces[new Random().Next(emptySpaces.Count)];
+                stones.Add(new Stone(randomPosition.Y, randomPosition.X));
             }
         }
     }

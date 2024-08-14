@@ -11,15 +11,17 @@ namespace Building_a_house
         public Map map;
         public Player player;
         public Inventory inventory;
+        public Motion motion;
         public bool run;
         
         
 
         public Gamedata()
         {
-            map = new Map();        // 맵초기화
-            player = new Player(map);  // 플레이어 초기화
-            inventory = new Inventory(); // 인벤토리 초기화
+            map = new Map();
+            inventory = new Inventory();
+            player = new Player(map);
+            motion = new Motion(player, map, inventory);
             run = true; // 루프
         }
         public void Start()
@@ -45,8 +47,7 @@ namespace Building_a_house
         public void Input()
         {
             ConsoleKey key = Console.ReadKey(true).Key;
-            player.PlayerMove(key);
-
+            motion.HandleInput(key);
         }
 
         public void Update()

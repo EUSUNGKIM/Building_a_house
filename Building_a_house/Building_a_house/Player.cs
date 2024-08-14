@@ -10,6 +10,7 @@ namespace Building_a_house
     {
         public Point position;
         public Map map;
+        public Inventory inventory;
 
         public Player(Map _map)
         {
@@ -45,6 +46,9 @@ namespace Building_a_house
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
                     X++;
+                    break;
+                case ConsoleKey.Spacebar:
+
                     break;
             }
             if (X >= 0 && X < map.MapTile.GetLength(1) &&
