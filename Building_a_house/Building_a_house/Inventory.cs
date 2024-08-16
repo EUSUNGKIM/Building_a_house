@@ -42,11 +42,16 @@ namespace Building_a_house
             }
             if (IsFull())
             {
-                Console.SetCursorPosition(0, 22);
+                Console.SetCursorPosition(0, 21);
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("인벤토리가 가득 찼습니다.");
                 Console.ResetColor();
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 21);
+                Console.Write(new string(' ', 30));
             }
         }
     }
