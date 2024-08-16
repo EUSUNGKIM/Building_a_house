@@ -69,7 +69,7 @@ namespace Building_a_house
             }
             else
             {
-                color = ConsoleColor.Gray;
+                return;
             }
 
             if (inventory.items.Any(item => item.Name == "돌"))

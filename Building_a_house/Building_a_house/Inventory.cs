@@ -37,7 +37,7 @@ namespace Building_a_house
             Console.Write("인벤토리 : ");
 
             Console.SetCursorPosition(10, 22);
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"1.초록색 2.분홍색 3.하얀색");
             Console.ResetColor();
 

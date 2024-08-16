@@ -20,7 +20,7 @@ namespace Building_a_house
         {
             Console.SetCursorPosition(position.X * 2 , position.Y);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("♧");
+            Console.Write("웃");
             Console.ResetColor();
         }
         public void PlayerMove(ConsoleKey key)
