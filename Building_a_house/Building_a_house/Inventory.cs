@@ -10,7 +10,7 @@ namespace Building_a_house
     public class Inventory
     {
         public List<Itemlist> items = new List<Itemlist>();
-        public const int MaxItems = 6;
+        public const int MaxItems = 10;
         
         public bool IsFull()
         {
@@ -35,10 +35,22 @@ namespace Building_a_house
         {
             Console.SetCursorPosition(0, 20);
             Console.Write("인벤토리 : ");
-            for (int i = 0; i < items.Count; i++)
+
+            Console.SetCursorPosition(10, 22);
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($"1.초록색 2.분홍색 3.하얀색");
+            Console.ResetColor();
+
+            if (items.Count == 0)
             {
                 Console.SetCursorPosition(10, 20);
-                Console.Write($"{items[i].Name} {i + 1}개 ");
+                Console.Write($"      ");
+            }
+            for (int i = 0; i < items.Count; i++)
+            {
+                
+                Console.SetCursorPosition(10, 20);
+                Console.Write($"{items[i].Name} {items.Count}개 ");
             }
             if (IsFull())
             {

@@ -30,9 +30,9 @@ namespace Building_a_house
             {
                 CollectStone();
             }
-            else if (key == ConsoleKey.D1)
+            else if (key == ConsoleKey.D1 || key == ConsoleKey.D2 || key == ConsoleKey.D3)
             {
-                InstallStone();
+                InstallStone(key);
             }
         }
 
@@ -51,8 +51,27 @@ namespace Building_a_house
             }
         }
 
-        private void InstallStone()
+        private void InstallStone(ConsoleKey key)
         {
+            ConsoleColor color;
+
+            if (key == ConsoleKey.D1)
+            {
+                color = ConsoleColor.Green;
+            }
+            else if (key == ConsoleKey.D2)
+            {
+                color = ConsoleColor.Magenta;
+            }
+            else if (key == ConsoleKey.D3)
+            {
+                color = ConsoleColor.White;
+            }
+            else
+            {
+                color = ConsoleColor.Gray;
+            }
+
             if (inventory.items.Any(item => item.Name == "돌"))
             {
                 
@@ -60,7 +79,7 @@ namespace Building_a_house
                 {
                     inventory.items.Remove(inventory.items.First(item => item.Name == "돌"));
                     Stone stone = new Stone(player.position.Y, player.position.X);
-                    stone.Install();
+                    stone.Install(color);
                     map.PlaceStone(player.position.Y, player.position.X, stone);
                 }
             }

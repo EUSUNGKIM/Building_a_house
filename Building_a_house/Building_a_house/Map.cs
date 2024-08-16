@@ -79,15 +79,19 @@ namespace Building_a_house
         }
         public void RandomStones(Inventory _inventory)
         {
-            
             if (!_inventory.IsFull())
             {
+                int generatinglimits = stones.Count(s => !s.IsInstalled);
+
+                if (generatinglimits >= 10)
+                {
+                    return;
+                }
                 var duplication = new List<Point>();
                 for (int i = 0; i < MapTile.GetLength(0); i++)
                 {
                     for (int j = 0; j < MapTile.GetLength(1); j++)
                     {
-
                         if (MapTile[i, j] && stones.All(s => s.Position.Y != i || s.Position.X != j))
                         {
                             duplication.Add(new Point(i, j));
